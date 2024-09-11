@@ -1,0 +1,18 @@
+P=? [ F s=6 ]
+
+P=? [ F (s=6 & gender=true & medicine=true) ] // Probability of "man_medicine"
+
+P=? [ F (medicine=true & gender=true) ] / P=? [ F (gender=true) ] //Probability of "medicine" given "man"
+
+P=? [ F (s=6 & gender=false & medicine=true) ] // Probability of "woman_medicine" eventually
+
+P=? [ G F (s=6 & medicine=true) ] // Probability of "medicine" being chosen infinitely often
+
+P=? [ G F (medicine=true) ]
+
+P=? [ G F (medicine=true) U G F (gender=false) ]
+
+P=? [ G (s!=2) ] //probabilit of never reaching state 2
+
+P=? [ F (s=6) & (X (s!=3) U F (s=6)) ]//prob of reaching 6 without passing 3
+
