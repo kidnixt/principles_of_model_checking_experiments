@@ -1,0 +1,34 @@
+const int one = 1;
+
+P>=1 [ F s=6 ]
+
+P=? [ F (medicine & woman) ]/P=? [ F woman ]
+
+P=? [ G F (s=6&medicine=true) ]
+
+P=? [ G F (medicine=true) ]
+
+P=? [ G (s!=2) ]
+
+P=? [ F (s=6)&(X (s!=3) U F (s=6)) ]
+
+P=? [ s=3 ]
+
+P=? [F man & !medicine & s=6]
+
+P=? [G ((!woman) | (F medicine & final)) ]
+
+P=? [G ((woman) & (F medicine & final)) ]
+
+P=? [ (F (s=6 & medicine=true)) | (woman=true) ] 
+
+P=? [ F (medicine & woman) ]
+
+P=? [F man & medicine & final]
+
+P=? [F (medicine & (F man))]
+
+filter(state, P=? [F (medicine & (F man))], (s=4 & man))
+
+P=? [F man & final]
+
