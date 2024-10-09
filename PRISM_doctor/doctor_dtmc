@@ -1,0 +1,28 @@
+dtmc
+
+module doctor_
+	s: [0..8] init 0;
+	he_doctor : bool init false;
+	she_doctor : bool init false;
+	black : bool init false;
+	white : bool init false;
+	man : bool init false;
+	woman : bool init false;
+	he_patient : bool init false;
+	she_patient : bool init false;
+	lucky : bool init false;
+	grateful : bool init false;
+
+
+	[] s=0 -> 1.0 : (s'=1); // ϵ -> The doctor was very famous.
+	[] s=1 -> 0.915 : (s'=2) & (he_doctor' = true) + 0.085 : (s'=2) & (she_doctor' = true); // The doctor was very famous. -> (He or She)
+	[] s=2 -> 1.0 : (s'=3); // The doctor was very famous. He -> saved the life of the
+	[] s=3 -> 0.606 : (s'=4) & (black' = true) + 0.394 : (s'=4) & (white' = true); // The doctor was very famous. (He or She) saved the life of the -> (black or white)
+	[] s=4 -> 0.774 : (s'=5) & (man' = true) + 0.226 : (s'=5) & (woman' = true);
+	[] s=5 -> 0.389: (s'=6) & (he_patient' = true) + 0.611: (s'=6) & (she_patient' = true);
+	[] s=6 -> 1.0: (s'=7);
+	[] s=7 -> 0.75: (s'=8) & (lucky' = true) + 0.25: (s'=8) & (grateful' = true);
+	[] s=8 -> 1.0: (s'=8);
+
+
+endmodule

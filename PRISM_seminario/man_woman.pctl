@@ -1,0 +1,26 @@
+P=? [ F s=6 & final ]
+
+P=? [ F s=6 & man & medicine ] //probabilidad de man_medicine
+
+P=? [ F s=6 & woman & !medicine ] //probabilidad de man_business
+
+P=? [ F s=6 & medicine ] //probabilidad de man_medicine & woman_medicine 
+
+P>=1 [ G F s=6 ] //always eventually se alcanza el estado final
+
+P=? [ (s!=6) U G (s=6) ] //eventualmente s será diferente de 6 hasta que siempre sea igual a 6
+
+P>=1 [ !(man=true & s=2) U F (medicine=true & s=6) ] 
+
+P=? [ !(man=true & s=2) U F (medicine=true & s=6) ] // si un hombre se entrena, eventualmente estará en medicina
+
+P=? [ F<=4 (s=6 & medicine=true) ] //probabilidad de que un hombre/mujer llegue a medicina en 4 transiciones o menos
+
+P=? [ F<=3 (s=6 & medicine=true) ]
+
+P=? [ F (s=6 & final) & !medicine ] //probabilidad de nadie este en medicine
+
+P>=1 [ G F s=6 ] 
+
+P>=1 [ ! (woman=true & s=3) U F (s=6 & final=true) ] //Si una mujer es entrenada, eventualmente estará en el estado final
+

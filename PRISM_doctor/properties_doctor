@@ -1,0 +1,33 @@
+// prob de que doctor sea hombre
+P=? [ F (he_doctor = true) ]
+
+// Probabilidad de que el paciente sea un hombre negro
+P=? [ F (black = true & man = true & he_patient = true) ] 
+
+// probabilidad de que el paciente sea una mujer blanca
+P=? [ F (white = true & woman = true & she_patient = true) ] 
+
+// Probabilidad de que el doctor sea identificado como hombre y el paciente sea afortunado
+P=? [ F (he_doctor = true & lucky = true) ] 
+
+// Probabilidad de que eventualmente el paciente sea afortunado o agradecido:
+P=? [ F (lucky = true | grateful = true) ] 
+
+//  Probabilidad de que el doctor sea identificado como mujer y el paciente sea agradecido
+P=? [ F (she_doctor = true & grateful = true) ] 
+
+// Contar estados donde el paciente es mujer y agradecida
+filter(count, P>0 [ F (grateful = true & she_patient = true) ], true) 
+
+// Promedio de la probabilidad de que el paciente sea afortunado
+filter(avg, P=? [ F (lucky = true) ], true) 
+
+//  En todos los estados donde el paciente es mujer y blanca, la probabilidad de que sea agradecida es mayor o igual a 0.85
+filter(exists, white = true & she_patient = true => P>=0.50 [ F (grateful = true) ]) 
+
+// En todos los estados donde el doctor es mujer, la probabilidad de que el paciente sea hombre negro es mayor o igual a 0.6
+filter(forall, she_doctor = true => P>=0.6 [ F (he_patient = true & black = true) ]) 
+
+// Probabilidad de que el paciente sea afortunado desde un estado donde el doctor es hombre y el paciente es mujer
+filter(state, P=? [ F (lucky = true) ], he_doctor=true & she_patient=true) 
+
